@@ -1,0 +1,8 @@
+schema_version: 20180708
+name: oci-rest-rp-auth-fn
+version: 0.0.2
+runtime: docker
+format: http-stream
+memory: 512
+timeout: 120
+idle_timeout: 1800

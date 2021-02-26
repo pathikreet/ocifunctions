@@ -1,0 +1,26 @@
+{
+  "name": "oci-rest-rp-auth-fn",
+  "version": "0.0.2",
+  "description": "NodeJS Custom Code to authenticate to OCI Rest APIs using RPST",
+  "main": "func.js",
+  "author": "Cognizant",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@fnproject/fdk": ">=0.0.19",
+    "fs": "0.0.1-security",
+    "node-forge": "^0.10.0",
+    "valid-url": "^1.0.9",
+    "http-signature": "^1.3.5",
+    "jssha": "^3.2.0"
+  },
+  "bundledDependencies": [
+    "node-forge",
+    "fs",
+    "http-signature",
+    "jssha"
+  ],
+  "config": {
+    "bin": "bin",
+    "name": "OCIRestRPAuthFn"
+  }
+}
