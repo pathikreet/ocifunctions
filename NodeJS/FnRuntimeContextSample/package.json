@@ -1,0 +1,21 @@
+{
+  "name": "node-sample-docker-fn",
+  "version": "0.0.1",
+  "description": "NodeJS Code for Oracle Fn to be created with Docker Image",
+  "main": "func.js",
+  "author": "Pathikreet Dutta",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@fnproject/fdk": ">=0.0.19",
+    "fs": "0.0.1-security",
+    "node-forge": "^0.10.0"
+  },
+  "bundledDependencies": [
+    "node-forge",
+    "fs"
+  ],
+  "config": {
+    "bin": "bin",
+    "name": "NodeDockerSampleFn"
+  }
+}
