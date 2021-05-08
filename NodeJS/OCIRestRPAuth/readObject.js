@@ -33,12 +33,12 @@ function sign(request, options) {
 }// sign
 
 //readObjectFromStorage Function
-const readObjectFromStorage = async function (privateKey, keyId, tenancyId, namespace, bucketName, fileName) {
+const readObjectFromStorage = async function (privateKey, keyId, tenancyId, host, namespace, bucketName, fileName) {
     /* return a promise that contains the REST API call */
     return new Promise((resolve, reject) => {
         /* the domain/path for the REST endpoint */
         const requestOptions = {
-            host: 'objectstorage.us-ashburn-1.oraclecloud.com',
+            host: `${encodeURIComponent(host)}`,//'objectstorage.us-ashburn-1.oraclecloud.com'
             path: `/n/${encodeURIComponent(namespace)}/b/${encodeURIComponent(bucketName)}/o/${encodeURIComponent(fileName)}`,
             //path: `/n/${encodeURIComponent(namespace)}/b/${encodeURIComponent(bucketName)}/o`, //List All Objects in Bucket
         };
@@ -67,7 +67,7 @@ const readObjectFromStorage = async function (privateKey, keyId, tenancyId, name
 }//readObjectFromStorage
 
 //readObject Function
-const readObject = async function (namespace, bucketName, fileName) {
+const readObject = async function (host, namespace, bucketName, fileName) {
     const privateKeyPath = process.env.OCI_RESOURCE_PRINCIPAL_PRIVATE_PEM
     const sessionTokenFilePath = process.env.OCI_RESOURCE_PRINCIPAL_RPST
     const rpst = fs.readFileSync(sessionTokenFilePath, { encoding: 'utf8' })
@@ -80,7 +80,7 @@ const readObject = async function (namespace, bucketName, fileName) {
     const tenancyId = claims.res_tenant
     /*  set the keyId used to sign the request; the format here is the literal string 'ST$', followed by the entire contents of the RPST */
     const keyId = `ST$${rpst}`
-    const response = await readObjectFromStorage(privateKey, keyId, tenancyId, namespace, bucketName, fileName)
+    const response = await readObjectFromStorage(privateKey, keyId, tenancyId, host, namespace, bucketName, fileName)
     return response
 }
 
